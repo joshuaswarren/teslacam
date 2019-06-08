@@ -1,5 +1,9 @@
 
 # Tesla Cam - An experimental application to repair, store and upload Tesla dash cam footage
+## Forked
+Forked from https://github.com/milesburton/teslacam
+The purpose of this fork is to add support for uploading to a server on your LAN instead of Dropbox, similar to https://github.com/cimryan/teslausb
+
 ## Current capabilities
  - [Backup] Storage of Tesla Cam videos
  - [Dropbox] Upload videos to Dropbox when a internet connection is available
@@ -18,7 +22,7 @@ Using a couple of tricks I've learned through tinkering with various single boar
 1. 2017 (AP 2.5) or beyond Tesla
 2. Raspberry Pi Zero W (only this model is supported)
 3. A wireless access point within reasonable distance of the Pi (mobile phone, home router etc)
-4. A sufficiently large SDHC card with the fastest write speeds you can find, at least 16Gig, ideally the largest you can buy. 
+4. A sufficiently large SDHC card with the fastest write speeds you can find, at least 16Gig, ideally the largest you can buy.
 5. High quality short USB A to USB Micro cable - Anker is quite decent
 6. Optional, a case to house the Raspberry Pi - anything with ventilation would be fine
 
@@ -31,7 +35,7 @@ Using a couple of tricks I've learned through tinkering with various single boar
 6. [Dropbox uploader](https://github.com/andreafabrizi/Dropbox-Uploader)
 
 ## Instructions (Detail to come)
-1. [Download](https://www.raspberrypi.org/downloads/raspbian/) and burn the latest "lite" Raspbian to a suitable SDHC card using [Etcher](https://www.balena.io/etcher/) (or equivalent) 
+1. [Download](https://www.raspberrypi.org/downloads/raspbian/) and burn the latest "lite" Raspbian to a suitable SDHC card using [Etcher](https://www.balena.io/etcher/) (or equivalent)
 2. Modify the /boot partition to [enable USB OTG](https://gist.github.com/gbaman/50b6cca61dd1c3f88f41) We need to enable g_mass_storage and dw2.
 3. Add your [WIFI configuration details](https://www.raspberrypi-spy.co.uk/2017/04/manually-setting-up-pi-wifi-using-wpa_supplicant-conf/) (consider adding several, including a portable hotspot such as your phone)
 4. Install daemontools. Follow [these steps](https://isotope11.com/blog/manage-your-services-with-daemontools) up until "Making Services"
@@ -63,11 +67,11 @@ Using a couple of tricks I've learned through tinkering with various single boar
 * Lipo batteries are not advised within the cabin, temperatures of over 60c have been reported in summer.
 
 ## Approach
-Primarily there is a trade-off between lost video vs accessibility (our ability to do something useful with the captured footage). To download the Tesla Dash cam video we need to temporarily stop the recording, as Dash cam records in 1 minute increments we are likely to lose at least this much video - possibly more, possibly less depending on timing. 
+Primarily there is a trade-off between lost video vs accessibility (our ability to do something useful with the captured footage). To download the Tesla Dash cam video we need to temporarily stop the recording, as Dash cam records in 1 minute increments we are likely to lose at least this much video - possibly more, possibly less depending on timing.
 
 The second concern is we have no signal for when the car will be powered down - ie, you've parked up for the day - the longer we allow the car to record, the higher the possibility that video will be "trapped" in the vehicle till you next power up.
 
-Finally to enable capabilities such as near-real-time monitoring or streaming that video must be transferred to the Pi as quickly as possible. The longer the car records, the longer it takes to transfer - and so on. 
+Finally to enable capabilities such as near-real-time monitoring or streaming that video must be transferred to the Pi as quickly as possible. The longer the car records, the longer it takes to transfer - and so on.
 
 To mitigate the issue we need to pick a comfortable number of minutes, say between 10-30 minutes. To add to the fun, we must minimise the duration the car is not recording - to this end we need to switch out our emulated USB drives as quickly as possible which can be done by using two (or more) images swapped over whilst the video files are transferred across.
 
@@ -87,18 +91,18 @@ With all this in mind, logically speaking the following steps need to be followe
 	* Mount the first image on the Pi
 	* Move all video onto the Pi
 	* Unmount the first image on the Pi
-	
+
 
 ## TODO
  - [Streaming] Experiment with streaming, it's trivial to stream to youtube with FFMPEG
  - [System|Remote] Intelligent service switching (ie, entirely disable dropbox)
  - [Remote] Remote configuration
  - [Remote] Infinite pagination
- - [Dropbox] Prioritise emergency video upload 
+ - [Dropbox] Prioritise emergency video upload
  - [Github] Explain setup instructions (more detail required)
  - [Github] Write decent installation script to automatically configure the application on a Pi
  - [System] Use a read only file system to avoid corruption of the operating system
  - [System] Make performance metrics more useful (time to upload video etc)
  - [System] Improve logging
  - [Thoughts] Automatic WiFi hotspot on first boot
- - [Me] Buy Tesla Roadster 
+ - [Me] Buy Tesla Roadster
