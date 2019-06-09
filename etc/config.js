@@ -20,6 +20,11 @@ const MAX_DISK_UTILISATION_PERCENT = 0.8;
 // This wont resolve the problem whilst charging away from home.
 const PAUSE_RECORDING_ON_WIFI = false;
 
+// if you want to use the rsync uploader, edit the following line
+// format is user@server:/path/
+// for example - 'teslapi@myserver:/mnt/teslacam/'
+const RSYNC_UPLOAD_DESTINATION = 'teslapi@myserver:/mnt/teslacam/';
+
 module.exports = {
   IMAGE_DIR,
   BACKUP_DIR,
@@ -32,5 +37,6 @@ module.exports = {
   HOME_PATH,
   DELETE_ON_UPLOAD,
   MAX_DISK_UTILISATION_PERCENT,
-  PAUSE_RECORDING_ON_WIFI
+  PAUSE_RECORDING_ON_WIFI,
+  RSYNC_UPLOAD_DESTINATION
 };
