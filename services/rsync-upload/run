@@ -1,2 +1,2 @@
 #!/bin/sh
-exec setuidgid pi /home/pi/teslacam/src/rsync-upload.js
+exec setuidgid pi node /home/pi/teslacam/src/rsync-upload.js
